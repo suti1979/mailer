@@ -2,7 +2,7 @@
 const nodemailer = require("nodemailer")
 require("dotenv").config()
 
-async function main() {
+async function main(message) {
   const transporter = nodemailer.createTransport({
     host: process.env.HOST,
     port: process.env.PORT,
@@ -18,9 +18,9 @@ async function main() {
   let info = await transporter.sendMail({
     from: '"Suti Foo 👻" <mailer@zz.hu>',
     to: "suti1979@gmail.com",
-    subject: "Hello ✔",
-    text: "Hello world?", // plain text body
-    html: "<b>Hello world?</b>", // html body
+    subject: "Message from node",
+    text: message, // plain text body
+    //html: "<b>Hello world?</b>", // html body
   })
 
   console.log("Message sent: %s", info.messageId)
@@ -29,6 +29,6 @@ async function main() {
   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info))
 }
 
-main().catch((e) => {
+main("jee").catch((e) => {
   console.log("Something went wrong: ", e)
 })

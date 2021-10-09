@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css"
+    />
+    <title>Ledurts Mailer</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-group">
+        <form action="/mailer" method="POST">
+          <label for="message">Send us something</label>
+          <textarea
+            class="form-control"
+            style="resize: none"
+            name="message"
+            id="message"
+            rows="10"
+            required
+          ></textarea>
+          <button
+            class="btn btn-outline-primary btn-block btn-lg mt-3"
+            type="submit"
+          >
+            SEND
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
