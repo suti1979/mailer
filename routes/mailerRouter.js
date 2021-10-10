@@ -10,8 +10,9 @@ router.get("/", (req, res) => {
 router.post("/", (req, res, next) => {
   const message = sanitizeHtml(req.body.message)
   nodeMailer(message).catch((error) => console.error(error))
-  // capcha middleware
+
   // error handeling, next()
+  // capcha middleware
   // set calendar
   res.redirect("ok")
 })

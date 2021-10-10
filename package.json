@@ -4,7 +4,7 @@
   "description": "",
   "main": "mailer-app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon mailer-app.js"
   },
   "keywords": [],
   "author": "",
