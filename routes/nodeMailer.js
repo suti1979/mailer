@@ -1,8 +1,7 @@
-"use strict"
 const nodemailer = require("nodemailer")
 require("dotenv").config()
 
-async function main(message) {
+module.exports = async function nodeMailer(message) {
   const transporter = nodemailer.createTransport({
     host: process.env.HOST,
     port: process.env.PORT,
@@ -11,7 +10,7 @@ async function main(message) {
       user: process.env.USER,
       pass: process.env.PASS,
     },
-    // add this for antivirus
+    // add this for eg antivirus
     tls: { rejectUnauthorized: false },
   })
 
@@ -20,7 +19,7 @@ async function main(message) {
     to: "suti1979@gmail.com",
     subject: "Message from node",
     text: message, // plain text body
-    //html: "<b>Hello world?</b>", // html body
+    html: message, // html body
   })
 
   console.log("Message sent: %s", info.messageId)
@@ -28,7 +27,3 @@ async function main(message) {
   // Preview only available when sending through an Ethereal account
   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info))
 }
-
-main("jee").catch((e) => {
-  console.log("Something went wrong: ", e)
-})
