@@ -5,13 +5,14 @@ module.exports = async function nodeMailer(message) {
   const transporter = nodemailer.createTransport({
     host: process.env.HOST,
     port: process.env.PORT,
-    secure: true,
+    //secure: true,
+    secureConnection: false,
     auth: {
       user: process.env.USER,
       pass: process.env.PASS,
     },
     // add this for eg antivirus
-    tls: { rejectUnauthorized: false },
+    tls: { rejectUnauthorized: false, ciphers: "SSLv3" },
   })
 
   let info = await transporter.sendMail({
