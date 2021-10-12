@@ -1,5 +1,6 @@
 const nodemailer = require("nodemailer")
 require("dotenv").config()
+const util = require("util")
 
 module.exports = async function nodeMailer(message) {
   const transporter = nodemailer.createTransport({
@@ -8,12 +9,14 @@ module.exports = async function nodeMailer(message) {
     //secure: true,
     secureConnection: false,
     auth: {
-      user: process.env.USER,
+      user: process.env.USERN, //on mac local ENV user...
       pass: process.env.PASS,
     },
     // add this for eg antivirus
     tls: { rejectUnauthorized: false, ciphers: "SSLv3" },
   })
+
+  console.log(util.inspect(transporter, false, null, true /* enable colors */))
 
   let info = await transporter.sendMail({
     from: '"Suti Foo 👻" <mailer@zz.hu>',

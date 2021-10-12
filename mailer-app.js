@@ -1,5 +1,5 @@
 const HOST = "127.0.0.1"
-const PORT = "5000"
+const PORT = "5001"
 const express = require("express")
 const mailerRouter = require("./routes/mailerRouter")
 const app = express()
