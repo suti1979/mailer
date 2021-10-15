@@ -1,20 +1,18 @@
 const express = require("express")
 const nodeMailer = require("./nodeMailer")
 const router = express.Router()
-const sanitizeHtml = require("sanitize-html")
 
 router.get("/", (req, res) => {
   res.render("index")
 })
 
-router.post("/", (req, res, next) => {
-  const message = sanitizeHtml(req.body.message)
-  nodeMailer(message).catch((error) => console.error(error))
+router.post("/", (req, res) => {
+  nodeMailer(req.body)
+    .then(() => res.render("index", { serverMessage: "event sent" }))
+    .catch((error) => res.send("Someting went wrong... :( " + error))
 
-  // error handeling, next()
   // capcha middleware
-  // set calendar
-  res.redirect("ok")
+  //
 })
 
 module.exports = router

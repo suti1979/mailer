@@ -8,26 +8,55 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css"
     />
-    <title>Ledurts Mailer</title>
+    <link rel="stylesheet" href="./css/mailerStyle.css" />
+    <!-- <script src="./js/mailerHelper.js" defer></script> -->
+    <title>ZZ Mailer &amp; Event</title>
   </head>
   <body>
-    <div class="container">
-      <div class="form-group">
-        <form action="/mailer" method="POST">
-          <label for="message">Send us something</label>
-          <textarea
-            class="form-control"
-            style="resize: none"
-            name="message"
-            id="message"
-            rows="10"
-            required
-          ></textarea>
+    <div class="container p-3">
+      <div class="lead text-center mt-3">
+        <strong>ZZ Mailer &amp; Event</strong>
+      </div>
+      <div class="form-group mt-3">
+        <form action="/mailer" method="POST" class="text-center">
+          <div class="form-floating mt-3">
+            <input
+              class="form-control"
+              type="datetime-local"
+              name="date"
+              id="date"
+              value="<%= new Date(new Date().toString().split('GMT')[0]+' UTC').toISOString().split('.')[0].slice(0,16) %>"
+            />
+
+            <label for="date">Időpont</label>
+          </div>
+
+          <div class="form-floating mt-3">
+            <input
+              class="form-control"
+              type="text"
+              name="subject"
+              id="subject"
+              required
+            />
+            <label for="subject">Tárgy</label>
+          </div>
+          <div class="form-floating mt-3">
+            <textarea
+              class="form-control"
+              style="resize: non; height: 100px"
+              name="message"
+              id="message"
+              rows="10"
+              required
+            ></textarea>
+            <label for="message">Üzenet</label>
+          </div>
           <button
             class="btn btn-outline-primary btn-block btn-lg mt-3"
             type="submit"
           >
-            SEND
+            KÜLDÉS
           </button>
         </form>
       </div>

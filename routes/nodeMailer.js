@@ -1,20 +1,16 @@
-const nodemailer = require("nodemailer")
 require("dotenv").config()
-const util = require("util")
-
+const nodemailer = require("nodemailer")
 const ical = require("ical-generator")
-const cal = ical()
-cal.events([
-  {
-    start: new Date(),
-    end: new Date(new Date().getTime() + 3600000),
-    summary: "Example Event",
-    description: "It works ;)",
-    url: "https://ledurts.hu",
-  },
-])
+const calendarEvent = ical()
+const sanitizeHtml = require("sanitize-html")
 
-module.exports = async function nodeMailer(message) {
+module.exports = async function nodeMailer(body) {
+  const message = sanitizeHtml(body.message)
+  const subject = sanitizeHtml(body.subject)
+  const date = body.date
+  const dateExp = new Date(new Date(date).getTime() + 1000 * 60 * 60)
+  //console.log(message, subject, date)
+
   const transporter = nodemailer.createTransport({
     host: process.env.HOST,
     port: process.env.PORT,
@@ -28,22 +24,34 @@ module.exports = async function nodeMailer(message) {
     tls: { rejectUnauthorized: false, ciphers: "SSLv3" },
   })
 
-  //console.log(util.inspect(transporter, false, null, true))
-
-  let info = await transporter.sendMail({
-    from: '"Suti Foo 👻" <mailer@zz.hu>',
-    to: "suti1979@gmail.com",
-    subject: "Message from node",
-    text: message, // plain text body
-    html: message, // html body
-    icalEvent: {
-      method: "PUBLISH",
-      content: cal.toString(),
+  calendarEvent.events([
+    {
+      start: date,
+      end: dateExp,
+      summary: subject,
+      description: message,
+      url: "zzhu",
+      organizer: {
+        name: "ZZ",
+        email: "info@zz.hu",
+      },
     },
-  })
+  ])
 
-  console.log("Message sent: %s", info.messageId)
+  // let info = await transporter.sendMail({
+  //   from: '"ZZ időpont BOT 👻" <mailer@zz.hu>',
+  //   to: [
+  //     //{ name: "Süti", address: "suti1979@gmail.com" },
+  //     { name: "András", address: "andras.zold@zz.hu" },
+  //   ],
+  //   subject: subject,
+  //   text: message,
+  //   html: message,
+  //   icalEvent: {
+  //     method: "request",
+  //     content: calendarEvent.toString(),
+  //   },
+  // })
 
-  // Preview only available when sending through an Ethereal account
-  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info))
+  // console.log("Message sent: %s", info.messageId)
 }
