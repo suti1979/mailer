@@ -61,5 +61,15 @@
         </form>
       </div>
     </div>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfzB4YaAAAAADYzZzEb9yE-skQh8JE8jgvvdEgr"></script>
+    <script>
+      grecaptcha.ready(function () {
+        grecaptcha
+          .execute("6LfzB4YaAAAAADYzZzEb9yE-skQh8JE8jgvvdEgr")
+          .then(function (token) {
+            myToken = token
+          })
+      })
+    </script>
   </body>
 </html>
