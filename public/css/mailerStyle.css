@@ -1,0 +1,28 @@
+html {
+  height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background: #a2bd9f;
+  background-repeat: no-repeat;
+  background: -webkit-linear-gradient(110deg, #dee9dc 60%, #a2bd9f 60%);
+  background: -moz-linear-gradient(110deg, #dee9dc 60%, #a2bd9f 60%);
+  background: -ms-linear-gradient(110deg, #dee9dc 60%, #a2bd9f 60%);
+  background: -o-linear-gradient(110deg, #dee9dc 60%, #a2bd9f 60%);
+  background: linear-gradient(110deg, #dee9dc 60%, #a2bd9f 60%);
+}
+
+body {
+  background-color: rgba(193, 242, 184, 0);
+  min-width: 300px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.lead {
+  font-size: 2em;
+
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
