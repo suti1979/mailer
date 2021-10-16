@@ -1,13 +1,13 @@
 // CapchaCheck by Suti1979 V1.0.1
 require("dotenv").config()
-const fetch = require("node-fetch")
+const axios = require("axios")
 const { stringify } = require("querystring")
 const secretKey = process.env.secretKeyV3Google
 const robotMSG =
   "Google reCaptcha thinks that you are a robot... Are you a Robot?"
 
 module.exports = (req, res, next) => {
-  if (!req.body.token) {
+  if (!req.body["g-recaptcha-response"]) {
     return res.json({
       success: false,
       msg: robotMSG,
@@ -16,18 +16,18 @@ module.exports = (req, res, next) => {
 
   const query = stringify({
     secret: secretKey,
-    response: req.body.token,
+    response: req.body["g-recaptcha-response"],
     remoteip: req.connection.remoteAddress,
   })
   const verifyURL = `https://google.com/recaptcha/api/siteverify?${query}`
 
-  fetch(verifyURL)
-    .then((res) => res.json())
+  axios
+    .post(verifyURL)
     .then((resCaptcha) => {
-      if (resCaptcha.success === false || resCaptcha.score < 0.5) {
-        resCaptcha.msg = robotMSG
-        return res.json(resCaptcha)
+      if (resCaptcha.data.success === false || resCaptcha.data.score < 0.5) {
+        return res.json(robotMSG)
       }
+      console.log(resCaptcha.data)
       next()
     })
     .catch((err) => console.error(err))

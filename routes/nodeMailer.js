@@ -38,20 +38,20 @@ module.exports = async function nodeMailer(body) {
     },
   ])
 
-  // let info = await transporter.sendMail({
-  //   from: '"ZZ időpont BOT 👻" <mailer@zz.hu>',
-  //   to: [
-  //     //{ name: "Süti", address: "suti1979@gmail.com" },
-  //     { name: "András", address: "andras.zold@zz.hu" },
-  //   ],
-  //   subject: subject,
-  //   text: message,
-  //   html: message,
-  //   icalEvent: {
-  //     method: "request",
-  //     content: calendarEvent.toString(),
-  //   },
-  // })
+  let info = await transporter.sendMail({
+    from: '"ZZ időpont BOT 👻" <mailer@zz.hu>',
+    to: [
+      //{ name: "Süti", address: "suti1979@gmail.com" },
+      //{ name: "András", address: "andras.zold@zz.hu" },
+    ],
+    subject: subject,
+    text: message,
+    html: message,
+    icalEvent: {
+      method: "request",
+      content: calendarEvent.toString(),
+    },
+  })
 
-  // console.log("Message sent: %s", info.messageId)
+  console.log("Message sent: %s", info.messageId)
 }
