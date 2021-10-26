@@ -4,13 +4,18 @@ const router = express.Router()
 const captchaCheck = require("./capchaCheck")
 
 router.get("/", (req, res) => {
-  res.render("index")
+  res.render("index", { message: "" })
 })
 
 router.post("/", captchaCheck, (req, res) => {
   nodeMailer(req.body)
-    .then(() => res.send("Message sent."))
-    .catch((error) => res.send("Someting went wrong... :( " + error))
+    .then(() => res.render("index", { message: "OK" }))
+    .catch((error) =>
+      res.render("index", {
+        message: "err",
+        err: error,
+      })
+    )
 })
 
 router.get("*", (req, res) => {

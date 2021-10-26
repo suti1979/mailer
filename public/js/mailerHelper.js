@@ -1,5 +1,11 @@
-let date = new Date(Date.now())
-const dateElement = document.getElementById("date")
-
-date = date.toISOString().substr(0, date.toISOString().indexOf("."))
-console.log("helper test: ", date)
+// for auto close div alert
+$(function () {
+  var alert = $("div.alert[auto-close]")
+  alert.each(function () {
+    var that = $(this)
+    var time_period = that.attr("auto-close")
+    setTimeout(function () {
+      that.alert("close")
+    }, time_period)
+  })
+})

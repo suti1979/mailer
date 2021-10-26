@@ -40,11 +40,7 @@ module.exports = async function nodeMailer(body) {
 
   let info = await transporter.sendMail({
     from: '"ZZ időpont BOT 👻" <mailer@zz.hu>',
-    to: [
-      { name: "Vera", address: "szepesi.vera@gmail.com" },
-      { name: "András", address: "andras.zold@zz.hu" },
-      { name: "Laci", address: "kovesilaci@gmail.com" },
-    ],
+    to: [{ name: "To", address: "suti1979@gmail.com" }],
     subject: subject,
     text: message,
     html: message,
