@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+
 html {
   height: 100%;
   -webkit-background-size: cover;
@@ -16,10 +19,11 @@ html {
 body {
   background-color: rgba(193, 242, 184, 0);
   min-width: 300px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Rubik", Verdana, Tahoma, sans-serif;
 }
 
 .lead {
-  font-size: 2em;
+  font-family: "Dancing Script", Verdana, Tahoma, sans-serif;
+  font-size: 3rem;
   color: #80ac7c;
 }

@@ -30,22 +30,23 @@ module.exports = async function nodeMailer(body) {
       end: dateExp,
       summary: subject,
       description: message,
-      url: "zzhu",
+      url: process.env.CALENDAR_ULR,
       organizer: {
-        name: "ZZ",
-        email: "info@zz.hu",
+        name: process.env.CALENDAR_ULR,
+        email: process.env.USERN,
       },
     },
   ])
 
   let info = await transporter.sendMail({
-    from: '"ZZ időpont BOT 👻" <mailer@zz.hu>',
+    from: '"ZZ időpont BOT" <mailer@zz.hu>',
     to: [{ name: "To", address: "suti1979@gmail.com" }],
     subject: subject,
     text: message,
     html: message,
+    //method: "REQUEST",
     icalEvent: {
-      method: "request",
+      method: "REQUEST",
       content: calendarEvent.toString(),
     },
   })
