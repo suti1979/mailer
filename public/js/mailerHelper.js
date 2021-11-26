@@ -1,4 +1,3 @@
-// for auto close div alert
 $(function () {
   var alert = $("div.alert[auto-close]")
   alert.each(function () {

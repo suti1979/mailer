@@ -23,4 +23,3 @@ router.get("*", (req, res) => {
 })
 
 module.exports = router
-//res.render("index", { serverMessage: "event sent" })
